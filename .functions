@@ -1,26 +1,25 @@
-# system information functions 
-# 
+#################
+#  Functions    #
+#################
 
-cpu() {
-	top -bn1 | grep "Cpu(s)"
+# System metrics (shown at every new shell)
+show_sys_metrics() {
+    echo ""
+    echo "───────────────── SYSTEM ─────────────────"
+    echo " CPU:    $(top -bn1 | grep 'Cpu(s)' | awk '{print $2 + $4}')%"
+    echo " MEM:    $(free -h | awk '/Mem:/ {print $3 "/" $2}')"
+    echo " DISK:   $(df -h / | awk 'NR==2 {print $3 "/" $2}')"
+    echo " NET:    ↓ $(cat /sys/class/net/*/statistics/rx_bytes | paste -sd+ | bc) bytes  ↑ $(cat /sys/class/net/*/statistics/tx_bytes | paste -sd+ | bc) bytes"
+    echo "──────────────────────────────────────────"
+    echo ""
 }
 
-mem() {
-	free -h
+# Git helpers
+glog() { git log --graph --oneline --decorate --all; }
+
+# Safer rm
+safe_rm() {
+    mkdir -p ~/.trash
+    mv "$@" ~/.trash/
 }
-
-disk() {
-	df -h /
-}
-
-net() {
-	ip -s link
-}
-
-
-# Fast directory jump
-if command -v zoxide &>/dev/null; then 
-	eval "$(zoxide init bash)
-fi 
-
-
+alias rm="safe_rm"
