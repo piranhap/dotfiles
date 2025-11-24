@@ -28,3 +28,11 @@ alias ls="exa --icons"
 
 # System metrics on each new shell
 show_sys_metrics
+# History 
+HISTSIZE=100000
+HISTFILESIZE=2000000
+HISTCONTROL=ignoredups:erasedups
+shopt -s histappend
+shopt -s cmdhist
+
+export HISTTIMEFORMAT="[%F %T] "
