@@ -1,0 +1,12 @@
+[user]
+	name = piranha
+	email = dan@cybershelltech.com
+
+[core]
+	editor = vim
+
+[color]
+	ui = auto
+
+[alias]
+	lg = log --oneline --graph --decorate -all 

@@ -1,0 +1,26 @@
+# system information functions 
+# 
+
+cpu() {
+	top -bn1 | grep "Cpu(s)"
+}
+
+mem() {
+	free -h
+}
+
+disk() {
+	df -h /
+}
+
+net() {
+	ip -s link
+}
+
+
+# Fast directory jump
+if command -v zoxide &>/dev/null; then 
+	eval "$(zoxide init bash)
+fi 
+
+

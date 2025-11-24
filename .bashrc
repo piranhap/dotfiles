@@ -22,13 +22,6 @@ esac
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 #---------------------------------------------------------
-# syntax-highlighting (if installed)
-#---------------------------------------------------------
-if [ -f /usr/share/bash-syntax-highlighting/syntax-highlighting.bash ]; then
-    source /usr/share/bash-syntax-highlighting/syntax-highlighting.bash
-fi
-
-#---------------------------------------------------------
 # exa (modern ls)
 #---------------------------------------------------------
 if command -v exa &>/dev/null; then
