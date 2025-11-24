@@ -3,16 +3,16 @@
 ###############
 
 # Load exports
-[ -f "$HOME/.bash_exports" ] && source "$HOME/.bash_exports"
+[ -f "$HOME/.exports" ] && source "$HOME/.bash_exports"
 
 # Load aliases
-[ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
+[ -f "$HOME/.aliases" ] && source "$HOME/.bash_aliases"
 
 # Load functions
-[ -f "$HOME/.bash_functions" ] && source "$HOME/.bash_functions"
+[ -f "$HOME/.functions" ] && source "$HOME/.bash_functions"
 
 # Load prompt
-[ -f "$HOME/.bash_prompt" ] && source "$HOME/.bash_prompt"
+[ -f "$HOME/.prompt" ] && source "$HOME/.bash_prompt"
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
