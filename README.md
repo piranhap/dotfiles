@@ -5,7 +5,7 @@ This repo contains my terminal configuration and setup scripts
 # before installing
 Make sure you have the necesary pkgs: 
 ```
-apt exa, fzf, fd-find, bat, zoxide, bc -y 
+apt install exa, fzf, fd-find, bat, zoxide, bc -y 
 ```
 
 # installation 
