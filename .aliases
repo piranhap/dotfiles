@@ -9,7 +9,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 # --------------
-# LS with color 
+# Everything with color 
 # --------------
 
 if command -v exa $>/dev/null; then
@@ -21,10 +21,17 @@ else
 	alias ll='ls -alF'
 	alias la='ls -A'
 fi
+alias grep='grep --color=auto'
+alias cat='bat'
+
 
 # --------------
 # handy 
 # --------------
 #
 alias reload='source ~/.bashrc'
-
+alias findf='fd --type f'
+alias findd='fd --type d'
+alias psmem='ps faux --sort=-%mem | head'
+alias pscpu='ps faux --sort=-%cpu | head'
+alias ports='ss -tulnp'
