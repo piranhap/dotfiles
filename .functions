@@ -2,7 +2,7 @@
 #  Functions    #
 #################
 
-# System metrics (shown at every new shell)
+# System metrics (shown at every new shell once)
 show_sys_metrics() {
     echo ""
     echo "───────────────── SYSTEM ─────────────────"
@@ -14,12 +14,34 @@ show_sys_metrics() {
     echo ""
 }
 
-# Git helpers
-glog() { git log --graph --oneline --decorate --all; }
+#############################################
+# PROMPT UTILITY FUNCTIONS
+#############################################
 
-# Safer rm
-safe_rm() {
-    mkdir -p ~/.trash
-    mv "$@" ~/.trash/
+__prompt_ip() {
+    ip route get 1.1.1.1 2>/dev/null | awk -F 'src ' 'NR==1{print $2}' | awk '{print $1}'
 }
-alias rm="safe_rm"
+
+__prompt_git() {
+    local branch
+    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+    [[ -n $branch ]] && printf " (git:%s)" "$branch"
+}
+
+__prompt_bar() {
+    printf "%*s" "$(tput cols)" "" | tr ' ' '─'
+}
+
+#############################################
+# SYSTEM STATUS LINE (OPTION)
+#############################################
+
+__system_status() {
+    local cpu mem disk net
+    cpu=$( __cpu_usage )
+    mem=$( __mem_usage )
+    disk=$( __disk_usage )
+    net=$( __net_speed )
+
+    echo -e "CPU:${cpu}%  MEM:${mem}%  DISK:${disk}%  NET: ${net}"
+}
