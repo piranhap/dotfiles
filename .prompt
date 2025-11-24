@@ -1,0 +1,14 @@
+#################
+#   Prompt      #
+#################
+
+blue="\[\e[34m\]"
+green="\[\e[32m\]"
+purple="\[\e[35m\]"
+reset="\[\e[0m\]"
+
+parse_git() {
+    git branch 2> /dev/null | sed -n '/\* /s///p'
+}
+
+PS1="${purple}\u${reset}:${blue}\w${reset} ${green}\$(parse_git)${reset} → "
