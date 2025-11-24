@@ -2,6 +2,8 @@
 #   Prompt      #
 #################
 
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
 blue="\[\e[34m\]"
 green="\[\e[32m\]"
 purple="\[\e[35m\]"
