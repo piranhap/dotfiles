@@ -2,17 +2,7 @@
 #  Functions    #
 #################
 
-# System metrics (shown at every new shell once)
-show_sys_metrics() {
-    echo ""
-    echo "───────────────── SYSTEM ─────────────────"
-    echo " CPU:    $(top -bn1 | grep 'Cpu(s)' | awk '{print $2 + $4}')%"
-    echo " MEM:    $(free -h | awk '/Mem:/ {print $3 "/" $2}')"
-    echo " DISK:   $(df -h / | awk 'NR==2 {print $3 "/" $2}')"
-    echo " NET:    ↓ $(cat /sys/class/net/*/statistics/rx_bytes | paste -sd+ | bc) bytes  ↑ $(cat /sys/class/net/*/statistics/tx_bytes | paste -sd+ | bc) bytes"
-    echo "──────────────────────────────────────────"
-    echo ""
-}
+
 
 #############################################
 # PROMPT UTILITY FUNCTIONS
@@ -35,6 +25,25 @@ __prompt_bar() {
 #############################################
 # SYSTEM STATUS LINE (OPTION)
 #############################################
+
+
+__cpu_usage() {
+    top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\([0-9.]*\)%* id.*/\1/' | awk '{print 100 - $1}'
+}
+
+__mem_usage() {
+    free -m | awk 'NR==2{printf "%.0f", $3*100/$2 }'
+}
+
+__disk_usage() {
+    df -h / | awk 'NR==2 {print $5}' | sed 's/%//'
+}
+
+__net_speed() {
+    local rx_bytes=$(cat /sys/class/net/*/statistics/rx_bytes | paste -sd+ | bc)
+    local tx_bytes=$(cat /sys/class/net/*/statistics/tx_bytes | paste -sd+ | bc)
+    echo "↓$(numfmt --to=iec-i --suffix=B $rx_bytes) ↑$(numfmt --to=iec-i --suffix=B $tx_bytes)"
+}
 
 __system_status() {
     local cpu mem disk net

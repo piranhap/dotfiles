@@ -12,15 +12,15 @@ apt install exa fzf fd-find bat zoxide bc git -y
 ```bash 
 git clone https://github.com/piranhap/dotfiles
 cd dotfiles
-chmod +x install sh # in case is not executable 
-/.install.sh 
+chmod +x install.sh # in case is not executable 
+./install.sh 
 ```
 
 This should do it. 
-The script does: 
-
-- backup existing config files
-- symlink files 
-- install cli tools 
-- load the custom prompt 
-
+The script symlinks the following files to your home directory: 
+- .bashrc
+- .aliases
+- .functions
+- .exports
+- .prompt
+- .history
