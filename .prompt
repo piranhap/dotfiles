@@ -2,8 +2,6 @@
 #   Prompt      #
 #################
 
-PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
 blue="\[\e[34m\]"
 green="\[\e[32m\]"
 purple="\[\e[35m\]"
@@ -13,24 +11,4 @@ parse_git() {
     git branch 2> /dev/null | sed -n '/\* /s///p'
 }
 
-set_prompt() {
-    local left_prompt="${purple}\u${reset}:${blue}\w${reset} ${green}\$(parse_git)${reset} → "
-    local right_prompt=$(__system_status)
-    
-    # Calculate the length of the prompt without non-printable characters.
-    # This is an approximation.
-    local uncolored_left_prompt="\u:\w \$(parse_git) → "
-    # The length of \u, \w and git branch are dynamic.
-    # A more accurate way is needed.
-    # Let's try another method using `printf` and `tput`.
-
-    # A robust way of getting a right prompt.
-    local a b;
-    a="$left_prompt";
-    b="$(__system_status)";
-    PS1="$a"'\[\e[s\e['"$(( $(tput cols) - ${#b} ))"'C\e[0m'"$b"'\e[u\]';
-}
-
-
-PROMPT_COMMAND="set_prompt"
-
+PS1="${purple}\u${reset}:${blue}\w${reset} ${green}\$(parse_git)${reset} → "

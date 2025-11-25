@@ -22,35 +22,3 @@ __prompt_bar() {
     printf "%*s" "$(tput cols)" "" | tr ' ' '─'
 }
 
-#############################################
-# SYSTEM STATUS LINE (OPTION)
-#############################################
-
-
-__cpu_usage() {
-    top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\([0-9.]*\)%* id.*/\1/' | awk '{print 100 - $1}'
-}
-
-__mem_usage() {
-    free -m | awk 'NR==2{printf "%.0f", $3*100/$2 }'
-}
-
-__disk_usage() {
-    df -h / | awk 'NR==2 {print $5}' | sed 's/%//'
-}
-
-__net_speed() {
-    local rx_bytes=$(cat /sys/class/net/*/statistics/rx_bytes | paste -sd+ | bc)
-    local tx_bytes=$(cat /sys/class/net/*/statistics/tx_bytes | paste -sd+ | bc)
-    echo "↓$(numfmt --to=iec-i --suffix=B $rx_bytes) ↑$(numfmt --to=iec-i --suffix=B $tx_bytes)"
-}
-
-__system_status() {
-    local cpu mem disk net
-    cpu=$( __cpu_usage )
-    mem=$( __mem_usage )
-    disk=$( __disk_usage )
-    net=$( __net_speed )
-
-    echo -e "CPU:${cpu}%  MEM:${mem}%  DISK:${disk}%  NET: ${net}"
-}
