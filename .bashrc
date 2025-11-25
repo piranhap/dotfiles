@@ -23,6 +23,11 @@
 # zoxide
 eval "$(zoxide init bash)"
 
+# batcat alias
+if command -v batcat &> /dev/null && ! command -v bat &> /dev/null; then
+    alias bat='batcat'
+fi
+
 # bat as man pager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
