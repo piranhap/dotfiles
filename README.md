@@ -5,7 +5,7 @@ This repo contains my terminal configuration and setup scripts
 # before installing
 Make sure you have the necesary pkgs: 
 ```
-apt install exa fzf fd-find bat zoxide bc git bash-completion -y 
+apt install eza fzf fd-find bat zoxide bc git bash-completion -y 
 ```
 
 # installation 
