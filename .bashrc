@@ -31,8 +31,5 @@ fi
 # bat as man pager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# exa default ls
-alias ls="exa --icons"
-
 # Source ble.sh for syntax highlighting
 [ -f "$HOME/ble.sh/out/ble.sh" ] && source "$HOME/ble.sh/out/ble.sh"
