@@ -1,0 +1,7 @@
+# to do
+
+la does not work
+exa does not know -A
+
+man does not work either
+
