@@ -42,3 +42,4 @@ fi
 
 # 3. Initialize Starship
 eval "$(starship init bash)"
+git pull --rebase
