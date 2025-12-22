@@ -28,6 +28,11 @@ alias l='ls -CF'     # Column view
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
+#Tmux on every shell 
+if command -v tmux >/dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi   
+
 # local bin
 # if not there create it with:
 # mkdir -p ~/.local/bin
@@ -42,4 +47,5 @@ fi
 
 # 3. Initialize Starship
 eval "$(starship init bash)"
-git pull --rebase
+
+# git pull --rebase
