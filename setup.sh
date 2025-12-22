@@ -39,7 +39,8 @@ ln -s ~/dotfiles/.nanorc ~/.nanorc
 ln -s ~/dotfiles/.inputrc ~/.inputrc
 
 # starship config
-mkdir -p ~/.config/starship
+rm -rf ~/.config/starship/starship.toml
+mkdir -p ~/.config/starship/
 ln -s ~/dotfiles/starship.toml ~/.config/starship/starship.toml
 
 # 
