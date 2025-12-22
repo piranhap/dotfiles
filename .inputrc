@@ -1,0 +1,20 @@
+# A. HISTORY SEARCH (The most important part)
+# Type the first few characters of a command (e.g., "ssh") and press Up Arrow.
+# It will search ONLY history lines starting with "ssh".
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# B. COMPLETION TWEAKS
+# Make Tab completion case-insensitive (e.g., 'cd doc' matches 'Documents')
+set completion-ignore-case on
+
+# If there are multiple Tab options, list them immediately (don't beep first)
+set show-all-if-ambiguous on
+
+# Colorize completion output (matches ls colors)
+set colored-stats on
+
+# C. NAVIGATION
+# Ctrl+Left/Right to jump whole words (like in a text editor)
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
