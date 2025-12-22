@@ -4,6 +4,11 @@
 mkdir -p ~/backup/config_files
 cp ~/.bashrc ~/backup/config_files/bashrc.bak
 cp ~/.profile ~/backup/config_files/profile.bak
+rm -rf ~/.vimrc ~/.gitconfig ~/.inputrc ~/.nanorc
+rm -rf ~/.config/starship
+rm -rf ~/.bashrc ~/.profile
+
+
 
 # install packages needed for the script 
 PACKAGES = "vim nano"
