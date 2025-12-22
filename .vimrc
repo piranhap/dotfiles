@@ -44,3 +44,12 @@ endif
 " --- KEY MAPPINGS ---
 " Press Space to clear search highlighting
 nnoremap <space> :nohlsearch<CR>
+
+" --- FILE TYPE SPECIFIC SETTINGS --- 
+" Specifically for YAML, Ansible and Terraform files
+if has ("autocmd")
+    autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
+
+    autocmd FileType terraform,tf,hcl,tofu setlocal ts=2 sts=2 sw=2 expandtab
+endif
+
